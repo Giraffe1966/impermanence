@@ -41,7 +41,7 @@ let
     modname;
 
   # id in `users.users.<id>` -> `users.groups.<group-of-user-with-id>`.name
-  moduleUserToGroupName = config: user: config.users.groups.${config.users.users.${user}.group}.name;
+  moduleUserToGroupName = config: user: config.users.users.${user}.group;
 
   # ["home" "user" ".screenrc"] -> "home/user/.screenrc"
   dirListToPath = dirList: (concatStringsSep "/" dirList);
