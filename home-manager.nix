@@ -1,6 +1,8 @@
 { pkgs
 , config
 , lib
+, osConfig
+, name
 , ...
 }:
 
@@ -21,6 +23,8 @@ let
     ;
 
   inherit (config) home;
+
+  outerName = name;
 
   cfg = config.home.persistence;
 
@@ -43,7 +47,7 @@ in
               # Home Manager doesn't seem to know about the user's group,
               # so we default it to null here and fill it in in the NixOS
               # module instead
-              group = null;
+              group = osConfig.users.users.${outerName}.group;
             }
           ));
       };
